@@ -1,0 +1,15 @@
+.checkout__ad {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.checkout {
+  background-color: white;
+  display: flex;
+  height: max-content;
+}
+.checkout__products {
+  padding-right: 10px;
+}
+.checkout__subtotal {
+  padding-left: 10px;
+}
