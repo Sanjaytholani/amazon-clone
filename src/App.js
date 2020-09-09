@@ -1,36 +1,56 @@
-import React, { useReducer } from "react";
+import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./Header";
 import Home from "./Home";
-import reducer from "./reducer";
-import { StateContext } from "./Context";
 import Checkout from "./Checkout";
+import Footer from "./Footer";
+import Login from "./Login";
+import { useEffect } from "react";
+import { auth } from "./firebase";
+import { useContext } from "react";
+import { StateContext } from "./Context";
 function App() {
-  const initial = {
-    basket: [],
-    user: null,
-  };
+  const [{ user }, dispatch] = useContext(StateContext);
+  useEffect(() => {
+    const unsbscribe = auth.onAuthStateChanged((authuser) => {
+      if (authuser) {
+        dispatch({
+          type: "SET_USER",
+          user: authuser,
+        });
+      } else {
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        });
+      }
+    });
+    return () => {
+      unsbscribe();
+    };
+  }, []);
+  console.log(user);
   return (
-    <StateContext.Provider value={useReducer(reducer, initial)}>
-      <Router>
-        <div className="app">
-          <Switch>
-            <Route exact path="/checkout">
-              <Header />
-              <Checkout />
-            </Route>
-            <Route exact path="/login">
-              <h1>Sign-in</h1>
-            </Route>
-            <Route exact path="/">
-              <Header />
-              <Home />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-    </StateContext.Provider>
+    <Router>
+      <div className="app">
+        <Switch>
+          <Route exact path="/checkout">
+            <Header />
+            <Checkout />
+            <Footer />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/">
+            <Header />
+            <Home />
+            <Footer />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

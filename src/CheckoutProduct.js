@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./CheckoutProduct.css";
 import { StateContext } from "./Context";
 function CheckoutProduct({ id, title, image, price, rating }) {
-  const [{}, dispatch] = useContext(StateContext);
+  const [, dispatch] = useContext(StateContext);
   var x = price;
   x = x.toString();
   var lastThree = x.substring(x.length - 3);
@@ -30,8 +30,8 @@ function CheckoutProduct({ id, title, image, price, rating }) {
         <p className="checkoutProduct__rating">
           {Array(rating)
             .fill()
-            .map((_) => (
-              <span role="img" aria-label="star">
+            .map((_, i) => (
+              <span key={i} role="img" aria-label="star">
                 ⭐️
               </span>
             ))}

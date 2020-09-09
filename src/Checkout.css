@@ -6,9 +6,24 @@
   background-color: white;
   display: flex;
   height: max-content;
+  padding-bottom: auto;
+}
+.checkout_title {
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid gray;
 }
 .checkout__products {
   padding-right: 10px;
+}
+.checkout__image {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+}
+
+.checkout__image > img {
+  width: 36rem;
 }
 .checkout__subtotal {
   padding-left: 10px;

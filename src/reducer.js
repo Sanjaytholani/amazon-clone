@@ -1,5 +1,4 @@
 function reducer(state, action) {
-  console.log(action);
   switch (action.type) {
     case "ADD_TO_BASKET":
       return {
@@ -10,6 +9,11 @@ function reducer(state, action) {
       return {
         ...state,
         basket: state.basket.filter((item) => item.id !== action.item.id),
+      };
+    case "SET_USER":
+      return {
+        ...state,
+        user: action.user,
       };
     default:
       return state;

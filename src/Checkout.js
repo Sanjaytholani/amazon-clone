@@ -14,12 +14,19 @@ function Checkout() {
           alt=""
         />
         {basket?.length === 0 ? (
-          <h1>Your Shopping Basket is Empty</h1>
+          <div>
+            <h1 className="checkout_title">Your Shopping Basket is Empty</h1>
+            <img
+              src="https://m.media-amazon.com/images/G/31/cart/empty/kettle-desaturated._CB424694257_.svg"
+              alt="empty"
+            />
+          </div>
         ) : (
           <div>
-            <h1 className="checkout__title">Your Basket</h1>
-            {basket.map((item) => (
+            <h1 className="checkout_title">Your Basket</h1>
+            {basket.map((item, i) => (
               <CheckoutProduct
+                key={i}
                 id={item.id}
                 title={item.title}
                 image={item.image}
@@ -27,6 +34,16 @@ function Checkout() {
                 rating={item.rating}
               />
             ))}
+            <div className="checkout__image">
+              <img
+                src="https://m.media-amazon.com/images/G/31/img16/GiftCards/CorpGC2020/PC_Dashboard_770x150._CB428054695_.jpg"
+                alt="gift"
+              />
+              <img
+                src="https://m.media-amazon.com/images/G/31/img16/GiftCards/WeddingStore/Retail_GC_770x150_01._CB447560580_.jpg"
+                alt="gift"
+              />
+            </div>
           </div>
         )}
       </div>

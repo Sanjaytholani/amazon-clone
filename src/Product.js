@@ -9,7 +9,7 @@ function Product({ id, title, price, image, rating }) {
   if (otherNumbers !== "") lastThree = "," + lastThree;
   var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
 
-  const [{}, dispatch] = useContext(StateContext);
+  const [, dispatch] = useContext(StateContext);
   const addItem = () => {
     dispatch({
       type: "ADD_TO_BASKET",
@@ -33,8 +33,8 @@ function Product({ id, title, price, image, rating }) {
         <p className="product__rating">
           {Array(rating)
             .fill()
-            .map((_) => (
-              <span role="img" aria-label="star">
+            .map((_, i) => (
+              <span key={i} role="img" aria-label="star">
                 ⭐️
               </span>
             ))}
