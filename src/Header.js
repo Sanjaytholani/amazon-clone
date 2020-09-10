@@ -5,12 +5,22 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { Link } from "react-router-dom";
 import { StateContext } from "./Context";
 import { auth } from "./firebase";
+import { toast } from "react-toastify";
 function Header() {
   const [{ basket, user }] = useContext(StateContext);
   const logout = () => {
     if (user) {
       auth.signOut();
     }
+    toast.error("Signed out", {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
   return (
     <nav className="header">

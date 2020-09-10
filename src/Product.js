@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import "./Product.css";
 import { StateContext } from "./Context";
+import { toast } from "react-toastify";
 function Product({ id, title, price, image, rating }) {
   var x = price;
   x = x.toString();
@@ -20,6 +21,15 @@ function Product({ id, title, price, image, rating }) {
         image,
         rating,
       },
+    });
+    toast.info("Item Added To Basket 🚀", {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
     });
   };
   return (

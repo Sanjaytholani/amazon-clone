@@ -2,9 +2,11 @@ import React from "react";
 import "./Home.css";
 import Product from "./Product";
 import { v4 } from "uuid";
+import { ToastContainer } from "react-toastify";
 function Home() {
   return (
     <div className="home">
+      <ToastContainer />
       <img
         src="https://images-eu.ssl-images-amazon.com/images/G/02/Amazon-co-uk-hq/2018/img/Prime/XCM_Manual_1133281_gatewayRedesignAcq_1500x600_Prime_1133280_30free-1x_1534769204-jpg._CB484986347_.jpg"
         alt="lol"

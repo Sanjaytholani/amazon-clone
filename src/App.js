@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { auth } from "./firebase";
 import { useContext } from "react";
 import { StateContext } from "./Context";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   const [{ user }, dispatch] = useContext(StateContext);
   useEffect(() => {
@@ -38,7 +39,6 @@ function App() {
           <Route exact path="/checkout">
             <Header />
             <Checkout />
-            <Footer />
           </Route>
           <Route exact path="/login">
             <Login />

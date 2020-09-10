@@ -3,6 +3,7 @@ import "./Login.css";
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "./firebase";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 function Login() {
   const history = useHistory();
   const [email, setEmail] = useState("");
@@ -14,7 +15,17 @@ function Login() {
       .then((auth) => {
         history.push("/");
       })
-      .catch((e) => alert(e.message)); //animate
+      .catch((e) =>
+        toast.error(`${e.message}`, {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
+      ); //animate
   };
   const register = (event) => {
     event.preventDefault();
@@ -23,10 +34,21 @@ function Login() {
       .then((auth) => {
         history.push("/");
       })
-      .catch((e) => alert(e.message)); //animate
+      .catch((e) =>
+        toast.error(`${e.message}`, {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
+      ); //animate
   };
   return (
     <div className="login">
+      <ToastContainer />
       <Link to="/">
         <img
           className="login__logo"
