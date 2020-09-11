@@ -36,6 +36,9 @@
   color: white;
   text-decoration: none;
 }
+.header__Link:hover {
+  text-decoration: underline;
+}
 .header__options {
   display: flex;
   flex-direction: column;

@@ -11,8 +11,15 @@ import { auth } from "./firebase";
 import { useContext } from "react";
 import { StateContext } from "./Context";
 import "react-toastify/dist/ReactToastify.css";
+import Payment from "./Payment";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import Orders from "./Orders";
 function App() {
   const [{ user }, dispatch] = useContext(StateContext);
+  const promise = loadStripe(
+    "pk_test_51HOn8DAVBwRRatg2hCn2bvEWDqgflc9lm2OGakC0T0BvRdg38EgqLNSBeAWLgkh5oU1bDoDZLv9xyoTSLs6AMw4U00nEMd5e8z"
+  );
   useEffect(() => {
     const unsbscribe = auth.onAuthStateChanged((authuser) => {
       if (authuser) {
@@ -42,6 +49,14 @@ function App() {
           </Route>
           <Route exact path="/login">
             <Login />
+          </Route>
+          <Route exact path="/orders">
+            <Orders />
+          </Route>
+          <Route exact path="/payment">
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
           </Route>
           <Route exact path="/">
             <Header />

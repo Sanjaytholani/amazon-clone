@@ -3,7 +3,7 @@ import "./CheckoutProduct.css";
 import { StateContext } from "./Context";
 import { toast } from "react-toastify";
 const CheckoutProduct = forwardRef(
-  ({ id, title, image, price, rating }, ref) => {
+  ({ id, title, image, price, rating, hideButton }, ref) => {
     const [, dispatch] = useContext(StateContext);
     var x = price;
     x = x.toString();
@@ -47,7 +47,9 @@ const CheckoutProduct = forwardRef(
                 </span>
               ))}
           </p>
-          <button onClick={removeItem}>Remove from basket</button>
+          {!hideButton && (
+            <button onClick={removeItem}>Remove from basket</button>
+          )}
         </div>
       </div>
     );

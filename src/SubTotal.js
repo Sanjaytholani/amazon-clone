@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import "./SubTotal.css";
 import { StateContext } from "./Context";
+import { useHistory } from "react-router-dom";
 function SubTotal() {
+  const history = useHistory();
   const [{ basket }] = useContext(StateContext);
   const total = basket.reduce((amount, item) => item.price + amount, 0);
   var x = total;
@@ -20,7 +22,9 @@ function SubTotal() {
         <input type="checkbox" />
         This order contains a gift
       </small>
-      <button>Proceed To Checkout</button>
+      <button onClick={(e) => history.push("/payment")}>
+        Proceed To Checkout
+      </button>
     </div>
   );
 }
